@@ -17,10 +17,14 @@ class ServiceProviderFactory extends Factory
      */
     public function definition(): array
     {
+        static $imageIndex = 1;
+        $imagePath = "/images/Service_Image_{$imageIndex}.webp";
+    
+        $imageIndex = $imageIndex >= 5 ? 1 : $imageIndex + 1;
         return [
             'name' => $this->faker->company(),
             'description' => $this->faker->sentence(),
-            'logo' => 'https://via.placeholder.com/150?text=' . urlencode($this->faker->word()),
+            'logo' => $imagePath,
             'category_id' => Category::factory(), // creates a new Category unless overridden
         ];
     }

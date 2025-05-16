@@ -1,10 +1,10 @@
 <template>
-  <div class="card" @click="$emit('click')">
-    <img :src="provider.logo" alt="Logo" class="logo" loading="lazy" />
-    <div class="info">
-      <h3 class="name">{{ provider.name }}</h3>
-      <p class="desc">{{ provider.description }}</p>
-      <span class="category">{{ provider.category.name }}</span>
+  <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4 flex transition-transform duration-200 hover:scale-[1.02]" @click="$emit('click')">
+    <img :src="provider.logo" alt="Logo" class="logo object-cover rounded-xl border border-gray-200" loading="lazy" />
+    <div class="ml-4 text-gray-800 w-full flex-1">
+      <h3 class="text-xl font-bold">{{ provider.name }}</h3>
+      <p class="text-gray-600 text-base">{{ provider.description }}</p>
+      <span class="text-gray-900 bg-gray-200 px-2 py-1 rounded text-sm">{{ provider.category.name }}</span>
     </div>
   </div>
 </template>
@@ -16,40 +16,11 @@ defineProps({
 </script>
 
 <style scoped>
-.card {
-  display: flex;
-  gap: 1rem;
-  background: white;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-.card:hover {
-  transform: scale(1.02);
-}
 .logo {
   width: 80px;
   height: 80px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid #eee;
 }
-.info {
+.flex-1{
   flex: 1;
-}
-.name {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0;
-}
-.desc {
-  color: #666;
-  margin: 0.5rem 0;
-}
-.category {
-  font-size: 13px;
-  color: #999;
 }
 </style>

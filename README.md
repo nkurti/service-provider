@@ -1,64 +1,51 @@
 # Service Provider Directory
 
-A lightweight, scalable, and performance-optimized directory module built with Laravel 10+ and Vue 3. The module simulates a real-world performance-sensitive feature, focused on minimizing TTFB and LCP while maintaining codebase modularity, maintainability, and testability.
+A simple Laravel 10 + Vue 3 module that lists service providers, allows filtering by category, and displays provider details.
 
----
+## Design Decisions
 
-##  Architectural & Design Decisions
+- Laravel API with a Vue 3 frontend.
+- Eloquent ORM with `with('category')` to avoid N+1 queries.
+- One main Vue component (`ProviderList.vue`) handles listing and filtering.
 
-### ✅ Clean API Design
-- RESTful endpoints structured via `api.php`, with stateless responses and clear separation from web routes.
-- Use of **Eloquent Resources** to decouple domain models from the API layer and reduce over-fetching.
+## Performance Optimizations
 
-### ✅ Maintainability via Scopes and Separation
-- Query logic abstracted via `scopeFilterByCategory` to ensure reusability across controllers and potential service classes.
-- Future-ready for extension into multi-scope filtering (`searchByName`, `sortBy`).
+- Lazy loading for images (`loading="lazy"`).
+- Eager loading of category relations.
+- Small JS/CSS bundle using Vite.
 
-### ✅ Frontend Component Architecture
-- UI built in **Vue 3 with Composition API**, using scoped, reusable components (`ProviderCard.vue`, `CategoryFilter.vue`, etc.).
-- **Vue Router** enables client-side routing with lightweight transitions.
+## Future Enhancements
 
----
+- Add pagination and name search.
+- Admin panel for managing providers.
+- Logo upload and storage integration.
+- Caching for categories.
 
-##  Performance Optimizations
+## Testing
 
-###  Backend (Laravel)
-- **Eager Loading** (`with('category')`) to eliminate N+1 queries and reduce SQL execution time.
-- **Pagination (`paginate(8)`)** limits payload size, accelerates response generation and transmission.
-- **Custom Resource (`ServiceProviderResource`)** to serialize only required fields, reducing JSON size and parse time.
-- **Scoped Querying (`scopeFilterByCategory`)** enables composable and expressive filters with zero redundancy.
-- **Category Cache** (`Cache::remember`) reduces unnecessary DB calls for static data (TTL 60min).
+Run the test with:
 
-### Frontend (Vue 3 + Vite)
-- **Deferred JS Modules** via Vite’s native ES module support improves First Input Delay and TTFB.
-- **Lazy Loading of Images** with `loading="lazy"` to postpone rendering until visible.
-- **Scoped CSS** reduces unused styles in the critical render path.
-- **Minimal Reflow Pagination UI** that avoids full DOM rerendering.
-- **vue-select integration** for async dropdowns with search, reducing node complexity and interaction latency.
-
----
-
-##  Testing Strategy
-
-- ✅ **Feature Tests**  
-  Validating core API endpoints with pagination, filtering, and profile data.
-
-- ✅ **Unit Tests**  
-  Covers custom Eloquent scopes such as `filterByCategory`, ensuring isolation and logic correctness.
+```bash
+php artisan test
+```
 
 
-### Debugging & Monitoring
+# How to run
+Backend (Laravel 10, PHP 8.4+)
 
-Laravel Telescope was used to monitor:
-- N+1 query issues on provider listings
-- Total query count per endpoint
-- Response time (TTFB)
-- Lazy loading vs eager loading impact
+```bash
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+php artisan serve
+```
 
-This helped confirm that performance targets were being met.
+# How to run
+Frontend (Vue 3 via Vite)
 
-- ✅ **Test Example:**
-```php
-$this->getJson('/api/providers?category_id=1')
-     ->assertStatus(200)
-     ->assertJsonCount(3, 'data');
+```bash
+npm install
+npm run build
+npm run serve
+```

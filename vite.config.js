@@ -17,4 +17,14 @@ export default defineConfig({
             },
         }),
     ],
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vue: ['vue'],
+                    'vue-router': ['vue-router'],
+                },
+            },
+        },
+    }
 });
