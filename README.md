@@ -38,13 +38,24 @@ A lightweight, scalable, and performance-optimized directory module built with L
 
 ---
 
-## Testing Strategy
+##  Testing Strategy
 
 - ✅ **Feature Tests**  
   Validating core API endpoints with pagination, filtering, and profile data.
 
 - ✅ **Unit Tests**  
   Covers custom Eloquent scopes such as `filterByCategory`, ensuring isolation and logic correctness.
+
+
+### Debugging & Monitoring
+
+Laravel Telescope was used to monitor:
+- N+1 query issues on provider listings
+- Total query count per endpoint
+- Response time (TTFB)
+- Lazy loading vs eager loading impact
+
+This helped confirm that performance targets were being met.
 
 - ✅ **Test Example:**
 ```php
