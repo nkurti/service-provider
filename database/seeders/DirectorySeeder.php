@@ -25,7 +25,7 @@ class DirectorySeeder extends Seeder
         foreach ($categories as $catName) {
             $category = Category::create(['name' => $catName]);
 
-            ServiceProvider::factory()->count(8)->create([
+            ServiceProvider::factory()->count(20)->create([
                 'category_id' => $category->id
             ]);
         }

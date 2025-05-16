@@ -66,9 +66,10 @@ const fetchProviders = async (category_id = null, page = 1) => {
   })
   providers.value = data.data
   pagination.value = {
-    current: data.current_page,
-    last: data.last_page
+    current: data.meta.current_page,
+    last: data.meta.last_page
   }
+
   ready.value = true
 }
 

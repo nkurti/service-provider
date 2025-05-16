@@ -33,6 +33,8 @@ php artisan test
 # How to run
 Backend (Laravel 10, PHP 8.4+)
 
+1. Create a new .env file
+
 ```bash
 composer install
 php artisan key:generate
