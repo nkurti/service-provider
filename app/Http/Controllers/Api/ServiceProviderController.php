@@ -13,7 +13,7 @@ class ServiceProviderController extends Controller
     {
         $providers = ServiceProvider::with('category')
             ->filterByCategory($request->category_id)
-            ->paginate(8);
+            ->paginate(10);
 
         return ServiceProviderResource::collection($providers);
     }
