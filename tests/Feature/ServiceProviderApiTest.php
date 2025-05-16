@@ -23,7 +23,7 @@ class ServiceProviderApiTest extends TestCase
             'links',
             'meta'
         ]);
-        $this->assertCount(8, $response->json('data')); // default paginate(8)
+        $this->assertCount(8, $response->json('data'));
     }
 
     public function test_it_filters_providers_by_category()
