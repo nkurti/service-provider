@@ -1,7 +1,3 @@
-<script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue'
-</script>
-
 <template>
   <div>
     <header class="flex items-center justify-center bg-gray-100 p-4">
