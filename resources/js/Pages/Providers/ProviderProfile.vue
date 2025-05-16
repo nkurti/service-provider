@@ -1,14 +1,17 @@
 <template>
-  <div class="profile-container" v-if="provider">
-    <button class="back-btn" @click="goBack">← Back to list</button>
+  <div class="max-w-[800px] mx-auto my-8 p-4" v-if="provider">
+    <button class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-md px-4 py-1.5 mb-6 text-sm cursor-pointer transition-all duration-200 ease-in-out" 
+      @click="goBack">
+      ← Back to list
+    </button>
 
-    <div class="card">
-      <img :src="provider.logo" alt="Logo" class="logo" />
+    <div class="bg-white border border-gray-200 shadow-md rounded-lg p-4 flex">
+      <img :src="provider.logo" alt="Logo" class="logo object-cover rounded-xl border border-gray-200" />
 
-      <div class="info">
-        <h2 class="name">{{ provider.name }}</h2>
-        <p class="description">{{ provider.description }}</p>
-        <p class="category"><strong>Category:</strong> {{ provider.category.name }}</p>
+      <div class="ml-4 text-gray-800 w-full flex-1">
+        <h2 class="text-xl font-bold">{{ provider.name }}</h2>
+        <p class="text-gray-600 text-base">{{ provider.description }}</p>
+        <p class="text-gray-900 bg-gray-200 px-2 py-1 rounded text-sm"><strong>Category:</strong> {{ provider.category.name }}</p>
       </div>
     </div>
   </div>
@@ -36,62 +39,11 @@ onMounted(fetchProvider)
 </script>
 
 <style scoped>
-.profile-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
-}
-
-.back-btn {
-  background-color: #f3f3f3;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 0.4rem 1rem;
-  margin-bottom: 1.5rem;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-.back-btn:hover {
-  background-color: #e2e2e2;
-}
-
-.card {
-  display: flex;
-  gap: 2rem;
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  align-items: center;
-}
-
 .logo {
   width: 120px;
   height: 120px;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid #eee;
 }
-
-.info {
+.flex-1{
   flex: 1;
-}
-
-.name {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.description {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 1rem;
-}
-
-.category {
-  font-size: 14px;
-  color: #777;
 }
 </style>

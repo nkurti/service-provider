@@ -1,25 +1,15 @@
+<script setup>
+import ApplicationLogo from '@/Components/ApplicationLogo.vue'
+</script>
+
 <template>
   <div>
-    <header>
+    <header class="flex items-center justify-center bg-gray-100 p-4">
+      <img src="/images/logo.webp" alt="Logo" class="h-12 w-12 mr-2" />
       <h1>Service Provider Directory</h1>
     </header>
-    <main>
+    <main class="p-2">
       <router-view />
     </main>
   </div>
 </template>
-
-<script setup>
-</script>
-
-<style scoped>
-header {
-  background-color: #f5f5f5;
-  padding: 1rem;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-main {
-  padding: 2rem;
-}
-</style>
